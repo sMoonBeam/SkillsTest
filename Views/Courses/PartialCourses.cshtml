@@ -1,0 +1,19 @@
+﻿@using SkillsTest.Models.Entities
+@using SkillsTest.CustomFunctions
+@model IEnumerable<Course>
+<div id="allCourses" class="row">
+    @foreach (var Item in Model)
+    {
+        <div class="col-lg-4 courseBlock" style="padding-top: 15px;">
+            <h3 class="CourseHead centered" id="NameSort">@Item.Title</h3>
+            <h6 class="centered">@Item.Info.TruncateLongString(80)</h6>
+            <div class="row">
+                <h6 class="col-lg-7">
+                    <b>Duration</b>: @Item.TotalMonths() monthes;
+                    <b>Total students</b>: @Item.Enrollments.Count().
+                </h6>
+                @Html.ActionLink("More", "SpecificCourse", "Courses", new { id = Item.CourseID }, new { @role = "button", @class = "btn btn-primary" })
+            </div>
+        </div>
+    }
+</div>

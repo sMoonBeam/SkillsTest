@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "SpecificInstuctor";
+}
+
+<h2>SpecificInstuctor</h2>
+@using SkillsTest.Models.Entities
+@model Instructor
+<div class="container">
+    <h3>@Model.FullName</h3>
+    <h3>@Model.AcademicDegree</h3>
+    <h3>@Model.HireDate.Value.ToShortDateString()</h3>
+    <h2>My courses:</h2>
+    @foreach (var Item in Model.Courses)
+    {
+        <h5>@Item.Title</h5>
+    }
+</div>

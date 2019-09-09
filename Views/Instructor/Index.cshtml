@@ -1,0 +1,23 @@
+﻿@using SkillsTest.Models.Entities
+@model IEnumerable<Instructor>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Instructor</h2>
+
+<div class="container">
+    <div class="row">
+        @foreach (var Item in Model)
+        {
+            <div class="col-lg-3 TopDivide">
+                <h3 class="CourseHead centered">@Item.FullName</h3>
+                <h4 class="centered">Academic degree: @Item.AcademicDegree</h4>
+                <div class="row">
+                    <h6 class="col-lg-7"><b>Hire Date</b>: @Item.HireDate.Value.ToShortDateString();</h6>
+                    @Html.ActionLink("More", "SpecificInstructor", "Instructor", new { id = Item.InstructorID }, new { @role = "button", @class = "btn btn-primary" })
+                </div>
+            </div>
+        }
+    </div>
+</div>

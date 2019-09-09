@@ -1,0 +1,11 @@
+﻿@using SkillsTest.Models.Entities
+@model Instructor
+@{
+    ViewBag.Title = "InstructorIndex";
+}
+<h5>Courses that I teach: </h5>
+@foreach(var course in Model.Courses){
+    <h6>@Html.ActionLink(course.Title, "EditJournal", "Manage", new { id = course.CourseID }).</h6>
+}
+
+

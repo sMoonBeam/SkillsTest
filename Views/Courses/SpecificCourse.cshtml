@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "SpecificCourse";
+}
+
+<h2>SpecificCourse</h2>
+@using SkillsTest.Models.Entities
+@model Course
+<div class="container">
+    @if (User.IsInRole("Student"))
+    {
+        <div>
+            @Html.ActionLink("More", "Register", "Courses", new { id = Model.CourseID }, new { @role = "button", @class = "btn btn-primary" })
+        </div>
+    }
+    <div class="row">
+        <div class="leftPart col-lg-3">
+            <h3>Course instructor: @ViewBag.InstructorName</h3>
+            <img src="~/Content/maleAvatar.png" alt="Male Avatar" width="150" height="150" />
+            <h4>Academic degree: @ViewBag.AcademicDegree</h4>
+        </div>
+        <div class="MainPart col-lg-9">
+            <div>
+                <h3>@Model.Title</h3>
+            </div>
+            <div class="CourseInfo">
+                <div class="CourseText">
+                    <h6>@Model.Info</h6>
+                </div>
+                <div class="CourseStudents">
+                    <h5>Total students: @Model.Enrollments.ToList().Count</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="CourseDates">
+        <div class="row">
+            <h6>Start date: @Model.StartDate.ToShortDateString() </h6>
+            <h6>End date: @Model.EndDate.ToShortDateString() </h6>
+            <h6>Total monthes: @Model.TotalMonths() </h6>
+        </div>
+    </div>
+</div>
+

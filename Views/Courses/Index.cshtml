@@ -1,0 +1,97 @@
+﻿@using SkillsTest.Models.Entities
+@model IEnumerable<Course>
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+    <select id="coursesSortBy" onchange="changeStyle()" class="custom-select" title="Choose one of the following..." style="margin-top: 10px;">
+        <option selected="selected">@ViewBag.order</option>
+        <option disabled>──────────</option>
+        <optgroup label="Course title">
+            <option>Ascending Course</option>
+            <option>Descending Course</option>
+        </optgroup>
+        <optgroup label="Students">
+            <option>Ascending Students</option>
+            <option>Descending Students</option>
+        </optgroup>
+        <optgroup label="Total monthes">
+            <option>Ascending monthes</option>
+            <option>Descending monthes</option>
+        </optgroup>
+    </select>
+    <select id="coursesThemes" onchange="changeTheme()" class="custom-select" title="Choose one of the following..." style="margin-top: 10px;">
+        <option selected="selected">@ViewBag.theme</option>
+        <option>C#</option>
+        <option>JS</option>
+        <option>JQuery</option>
+        <option>ASP.NET</option>
+        <option>Java</option>
+        <option>F#</option>
+        <option>Python</option>
+        <option>All Themes</option>
+    </select>
+</div>
+@Html.Partial("PartialCourses", Model)
+@section scripts{
+<script>
+    var languagesSelect = document.getElementById('coursesSortBy');
+    var courseThemes = document.getElementById('coursesThemes');
+    function changeTheme() {
+        var selectedOption = courseThemes.options[courseThemes.selectedIndex].text;
+        var query = "Index";
+        switch (selectedOption) {
+            case "C#":
+                query = query + "?theme=" + "C#";
+                break;
+            case "JS":
+                query = query + "?theme=" + "JS";
+                break;
+            case "JQuery":
+                query = query + "?theme=" + "JQuery";
+                break;
+            case "ASP.NET":
+                query = query + "?theme=" + "ASP.NET";
+                break;
+            case "Java":
+                query = query + "?theme=" + "Java";
+                break;
+            case "F#":
+                query = query + "?theme=" + "F#";
+                break;
+            case "Python":
+                query = query + "?theme=" + "Python";
+                break;
+            case "All Themes":
+                query = query + "?theme=" + "All Themes";
+                break;
+        }
+        document.location.href = query + "&order=" + "@ViewBag.order";
+    }
+    function changeStyle() {
+        var selectedOption = languagesSelect.options[languagesSelect.selectedIndex].text;
+        var query = "Index";
+        switch(selectedOption){
+            case "Ascending Course":
+                query = query + "?order=" + "Ascending Course"
+                break;
+            case "Descending Course":
+                query = query + "?order=" + "Descending Course"
+                break;
+            case "Ascending Students":
+                query = query + "?order=" + "Ascending Students"
+                break;
+            case "Descending Students":
+                query = query + "?order=" + "Descending Students"
+                break;
+            case "Ascending monthes":
+                query = query + "?order=" + "Ascending Monthes"
+                break;
+            case "Descending monthes":
+                query = query + "?order=" + "Descending Monthes"
+                break;
+        }
+        document.location.href = query + "&theme=" + "@ViewBag.theme";
+    }
+</script>
+}

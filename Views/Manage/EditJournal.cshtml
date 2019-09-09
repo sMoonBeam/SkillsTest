@@ -1,0 +1,19 @@
+﻿@using SkillsTest.Models.Entities
+@model Course
+@{
+    ViewBag.Title = "EditJournal";
+}
+
+@foreach (var enrollment in Model.Enrollments)
+{
+    using (Html.BeginForm("EditEnrollment", "Manage", FormMethod.Post))
+    {
+    <div class="row">
+        <input type="hidden" name="EnrollmentID" value="@enrollment.EnrollmentID" />
+        <h6>@enrollment.StudentID</h6>
+        <input type="number" name="Grade" value="@enrollment.Grade.ToString().Replace(',', '.')" min="0.01" max="10" step="0.01"/>
+        <input type="submit" name="SubmitGrade" value="Submit" />
+    </div>
+    }
+}
+

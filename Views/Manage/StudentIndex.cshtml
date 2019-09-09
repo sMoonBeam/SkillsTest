@@ -1,0 +1,34 @@
+﻿@using SkillsTest.Models.Entities
+@model Student
+@{
+    ViewBag.Title = "StudentIndex";
+}
+
+<h6>Full name: @Model.FullName.</h6>
+<h6>Email: @Model.User.Email.</h6>
+<h5>Courses that hadn`t started: </h5>
+@foreach (var Item in ViewBag.Courses as List<Course>)
+{
+    if (Item.StartDate > DateTime.Now)
+    {
+
+        <h6>@Item.Title;</h6>
+    }
+}
+<h5>Current courses: </h5>
+@foreach (var Item in ViewBag.Courses as List<Course>)
+{
+    if (Item.EndDate > DateTime.Now && Item.StartDate < DateTime.Now)
+    {
+        <h6>@Item.Title;</h6>
+    }
+}
+<h5>Ended courses: </h5>
+@foreach (var Item in ViewBag.Courses as List<Course>)
+{
+    if (Item.EndDate < DateTime.Now)
+    {
+        <h6>@Item.Title;</h6>
+    }
+}
+
